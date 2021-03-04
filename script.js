@@ -5,10 +5,7 @@ const overlay = document.getElementById('overlay')
 openAbook.forEach(button => {
     button.addEventListener('click', () => {
         const book = document.querySelector(button.dataset.addbookTarget)
-        console.log(button)
-        console.log("Butt")
         openAddb(book)
-        console.log("Butt2")
 
     })
 })
@@ -19,9 +16,15 @@ closeAbook.forEach(button => {
         closeAddb(book);
     })
 })
+overlay.addEventListener("click", () => {
+    const books = document.querySelectorAll('.addBook.active')
+    books.forEach (book => {
+        closeAddb(book);
+
+    })
+})
 
 function openAddb(book){
-    console.log("Butt3")
     if (book == null) return console.log("null")
     book.classList.add('active');
     overlay.classList.add('active');
