@@ -35,3 +35,9 @@ function closeAddb(book){
     book.classList.remove('active');
     overlay.classList.remove('active');
 }
+
+/*
+useful youtube links
+https://www.youtube.com/watch?v=FTiOWOrGODI&ab_channel=OnlineCourses
+https://www.youtube.com/watch?v=MBaw_6cPmAw&t=655s&ab_channel=WebDevSimplified
+*/

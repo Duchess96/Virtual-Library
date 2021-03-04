@@ -1,6 +1,24 @@
 *,*::after,*::before{
   box-sizing: border-box;
 }
+table {
+  border:1px solid black;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table td {
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+}
+
+table td:first-child {
+  border-left: none;
+}
+
+table td:last-child {
+  border-right: none;
+}
 .toggle-container {
   position: relative;
   display: inline-block;
