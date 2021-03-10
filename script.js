@@ -1,31 +1,21 @@
 const openAbook = document.querySelectorAll('[data-addBook-target]')
 const closeAbook = document.querySelectorAll('[data-close-button]')
 const overlay = document.getElementById('overlay')
-// const clr = document.get.querySelector("deleteAll");
+const clr = document.getElementById("clearLocal");
 let arr = new Array();
-// const submitData = document.getElementById('submit')
+const submitData = document.getElementById('submit');
+
 
 showData();
-
-
-
+const removeBtn = document.getElementById('btn');
+// reMove();
 
 openAbook.forEach(button => {
     button.addEventListener('click', () => {
         const book = document.querySelector(button.dataset.addbookTarget)
         openAddb(book)
-
-
     })
 })
-// clr.forEach(button => {
-//     button.addEventListener('click', () => {
-//         console.log("hello6");
-
-
-//     })
-// })
-
 
 closeAbook.forEach(button => {
     button.addEventListener('click', () => {
@@ -41,42 +31,92 @@ overlay.addEventListener("click", () => {
     })
 })
 
-// submitData.forEach(button => {
+submitData.addEventListener("click", () =>{
+    addData();
+})
+
+clr.addEventListener("click", () =>{
+    localStorage.clear();
+    location.reload();
+})
+
+// Object.keys(arr).forEach(button => {
+//     button.addEventListener("click",)
+// })
+// removeBtn.keys(arr).forEach(button => {
+//     button.addEventListener('click', () => {
+//         console.log("hello");
+//     })
+// })
+// removeBtn.addEventListener("click", () =>{
+//     console.log("hello");
+// })
+
+// function reMove(){
+//     removeBtn.forEach(input => {
+//         input.addEventListener("click")
+//     })
+
+//     removeBtn.keys(arr).forEach(button => {
 //     button.addEventListener('click', () => {
 //         console.log("hello");
 //     })
 // })
 
-function myFunction(){
-    console.log("hello1");
+
+//     removeBtn.addEventListener("click", () =>{
+//         console.log("hello");
+//     })
+// }
+
+
+
+function addData(){
     const books = document.querySelectorAll('.addBook.active')
     books.forEach (book => {
         closeAddb(book);
     })
 
     getData();
-    arr.push({
-        
-        bookID: document.getElementById("bTitle").value,
-        authorID: document.getElementById("aName").value,
-        noPages: document.getElementById("nPages").value,
-        // rStat: document.getElementById("bTitle").nodeValue,
+    
+    let chb = document.getElementById("checkbox");
 
-    })
-    console.log("hello2");
+
+    if(chb.checked){
+        console.log("Yes");
+        arr.push({
+            bookID: document.getElementById("bTitle").value,
+            authorID: document.getElementById("aName").value,
+            noPages: document.getElementById("nPages").value,
+            rStat: "Yes"
+        })
+        
+    }else{
+        console.log("No");
+        arr.push({
+            bookID: document.getElementById("bTitle").value,
+            authorID: document.getElementById("aName").value,
+            noPages: document.getElementById("nPages").value,
+            rStat: "No"
+        })
+    }
+
+    // arr.push({ 
+    //     bookID: document.getElementById("bTitle").value,
+    //     authorID: document.getElementById("aName").value,
+    //     noPages: document.getElementById("nPages").value,
+    // })
+    
     localStorage.setItem("localData", JSON.stringify(arr));
     showData();
-
-}
-
-function clearData(){
-    localStorage.clear();
-    location.reload();
+    
+    
 
 }
 
 function showData(){
     getData();
+    
     let tbl = document.getElementById("myTable")
 
     let x = tbl.rows.length;
@@ -86,27 +126,34 @@ function showData(){
     
     for (i=0;i<arr.length;i++){
         let r = tbl.insertRow();
+        const btn = document.createElement('input');
+        btn.type = "button";
+        btn.className = "btn";
+        btn.id = "btn";
+        btn.onclick = console.log("hello");
+        console.log(btn);
 
         let cell1 = r.insertCell();
         let cell2 = r.insertCell();
         let cell3 = r.insertCell();
-        // let cell1 = r.insertCell();
+        let cell4 = r.insertCell();
+        let cell5 = r.insertCell();
 
         cell1.innerHTML = arr[i].bookID;
         cell2.innerHTML = arr[i].authorID;
         cell3.innerHTML = arr[i].noPages;
-        console.log("hello3");
+        cell4.innerHTML = arr[i].rStat;
+        cell5.appendChild(btn);
     }
     
 }
+
 function getData(){
-    console.log("hello4");
     let str = localStorage.getItem("localData");
     if (str != null){
         arr=JSON.parse(str);
     }
-    console.log(arr);
-    console.log("hello5");
+
 }
 
 function openAddb(book){

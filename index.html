@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h1>Virtual Library <button data-addBook-target="#addBook">Add a Book</button><button onclick = clearData()>Clear All Library</button></h1>
+    <h1>Virtual Library <button data-addBook-target="#addBook">Add a Book</button><button id= "clearLocal">Clear All</button></h1>
     <hr>
     <div class="addBook" id="addBook">
         <div data-close-button class="cButton">
@@ -23,12 +23,13 @@
         <div class="numberPages">Number of Pages</div>
         <input type="number" id="nPages" min="0">
         <div class="readStatus">Have you read it?</div>
-        <div class="toggle-container">
-            <input type="checkbox" />
+        <!-- <div class="toggle-container">
+            <input type="checkbox" id="checkbox" />
             <div class="slider round"></div>
-        </div>
+        </div> -->
+        <input type="checkbox" class="checkbox" id="checkbox" />
         <br>
-        <button class="submit" id="submit" onclick = myFunction()> Submit</button>
+        <button class="submit" id="submit" > Submit</button> 
     </div> 
     <div id="overlay"></div>
     <table id = "myTable">
@@ -36,8 +37,8 @@
             <td>Book Title</td>
             <td>Author</td>
             <td># of pages</td>
-            <!-- <td>Read Status</td>
-            <td>Remove</td> -->
+            <td>Read Status</td>
+            <td>Remove</td>
         </tr>
     </table>
 
