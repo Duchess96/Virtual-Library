@@ -108,7 +108,7 @@ function showData(){
 }
 
 function myFunction(event){
-    let index = event.target.parentNode.parentNode.id);
+    let index = event.target.parentNode.parentNode.id;
     arr.splice(index,1);
     localStorage.setItem("localData", JSON.stringify(arr));
     location.reload();
