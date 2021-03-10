@@ -5,10 +5,7 @@ const clr = document.getElementById("clearLocal");
 let arr = new Array();
 const submitData = document.getElementById('submit');
 
-
 showData();
-const removeBtn = document.getElementById('btn');
-// reMove();
 
 openAbook.forEach(button => {
     button.addEventListener('click', () => {
@@ -23,6 +20,7 @@ closeAbook.forEach(button => {
         closeAddb(book);
     })
 })
+
 overlay.addEventListener("click", () => {
     const books = document.querySelectorAll('.addBook.active')
     books.forEach (book => {
@@ -40,37 +38,6 @@ clr.addEventListener("click", () =>{
     location.reload();
 })
 
-// Object.keys(arr).forEach(button => {
-//     button.addEventListener("click",)
-// })
-// removeBtn.keys(arr).forEach(button => {
-//     button.addEventListener('click', () => {
-//         console.log("hello");
-//     })
-// })
-// removeBtn.addEventListener("click", () =>{
-//     console.log("hello");
-// })
-
-// function reMove(){
-//     removeBtn.forEach(input => {
-//         input.addEventListener("click")
-//     })
-
-//     removeBtn.keys(arr).forEach(button => {
-//     button.addEventListener('click', () => {
-//         console.log("hello");
-//     })
-// })
-
-
-//     removeBtn.addEventListener("click", () =>{
-//         console.log("hello");
-//     })
-// }
-
-
-
 function addData(){
     const books = document.querySelectorAll('.addBook.active')
     books.forEach (book => {
@@ -80,7 +47,6 @@ function addData(){
     getData();
     
     let chb = document.getElementById("checkbox");
-
 
     if(chb.checked){
         console.log("Yes");
@@ -101,17 +67,9 @@ function addData(){
         })
     }
 
-    // arr.push({ 
-    //     bookID: document.getElementById("bTitle").value,
-    //     authorID: document.getElementById("aName").value,
-    //     noPages: document.getElementById("nPages").value,
-    // })
-    
     localStorage.setItem("localData", JSON.stringify(arr));
     showData();
     
-    
-
 }
 
 function showData(){
@@ -123,16 +81,18 @@ function showData(){
     while (--x){
         tbl.deleteRow(x);
     }
-    
+    console.log(arr);
     for (i=0;i<arr.length;i++){
         let r = tbl.insertRow();
+        r.id = i;
+
         const btn = document.createElement('input');
         btn.type = "button";
         btn.className = "btn";
         btn.id = "btn";
-        btn.onclick = console.log("hello");
-        console.log(btn);
-
+        btn.value = "X";
+        btn.onclick = myFunction;
+        
         let cell1 = r.insertCell();
         let cell2 = r.insertCell();
         let cell3 = r.insertCell();
@@ -144,7 +104,14 @@ function showData(){
         cell3.innerHTML = arr[i].noPages;
         cell4.innerHTML = arr[i].rStat;
         cell5.appendChild(btn);
-    }
+    } 
+}
+
+function myFunction(event){
+    let index = event.target.parentNode.parentNode.id);
+    arr.splice(index,1);
+    localStorage.setItem("localData", JSON.stringify(arr));
+    location.reload();
     
 }
 
@@ -167,9 +134,3 @@ function closeAddb(book){
     book.classList.remove('active');
     overlay.classList.remove('active');
 }
-
-/*
-useful youtube links
-https://www.youtube.com/watch?v=FTiOWOrGODI&ab_channel=OnlineCourses
-https://www.youtube.com/watch?v=MBaw_6cPmAw&t=655s&ab_channel=WebDevSimplified
-*/
